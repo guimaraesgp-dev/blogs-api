@@ -16,6 +16,15 @@ const getUsers = async (email, password) => {
   return result;
 };
 
+const getAlluser = async () => {
+  const result = await User.findAll();
+  return result.map(({ dataValues }) => {
+    console.log('map getAll', dataValues);
+    const { password: _, ...newUser } = dataValues;
+    return newUser;
+  });
+};
+
 const getUserEmail = async (findEmail) => {
   const result = await User.findAll();
   return result.find(({ email }) => email === findEmail);
@@ -31,4 +40,5 @@ const createUser = async (user) => {
 module.exports = {
   getUsers,
   createUser,
+  getAlluser,
 };

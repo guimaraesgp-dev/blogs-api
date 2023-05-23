@@ -11,9 +11,15 @@ const createUser = async (req, res) => {
     const user = await userLogin.createUser(req.body);
     if (user) { return res.status(201).json({ token: user }); }
     res.status(409).json({ message: 'User already registered' });
-  };
+};
+
+const getAlluser = async (_req, res) => {
+    const allUsers = await userLogin.getAlluser();
+    res.status(200).json(allUsers);
+};  
 
 module.exports = {
   getLogin,
   createUser,
+  getAlluser,
 };
