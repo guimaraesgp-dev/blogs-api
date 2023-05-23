@@ -7,6 +7,13 @@ const getLogin = async (req, res) => {
   res.status(200).json({ token: user });
 };
 
+const createUser = async (req, res) => {
+    const user = await userLogin.createUser(req.body);
+    if (user) { return res.status(201).json({ token: user }); }
+    res.status(409).json({ message: 'User already registered' });
+  };
+
 module.exports = {
   getLogin,
+  createUser,
 };

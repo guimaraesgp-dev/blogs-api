@@ -16,6 +16,19 @@ const getUsers = async (email, password) => {
   return result;
 };
 
+const getUserEmail = async (findEmail) => {
+  const result = await User.findAll();
+  return result.find(({ email }) => email === findEmail);
+};
+
+const createUser = async (user) => {
+  const verify = await getUserEmail(user.email);
+  if (verify) { return null; }
+  const result = await User.create(user);
+  return Token(result);
+};
+
 module.exports = {
   getUsers,
+  createUser,
 };
