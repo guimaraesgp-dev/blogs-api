@@ -43,9 +43,10 @@ const createUser = async (user) => {
    return result;
  };
 
-module.exports = {
+ module.exports = {
   getUsers,
   createUser,
   getAlluser,
   getUserById,
+
 };
